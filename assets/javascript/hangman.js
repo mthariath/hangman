@@ -17,25 +17,29 @@ hangman.start = function start() {
 }
 
 hangman.checkLetter = function checkLetter(letter) {
-	if (word.toLowerCase().indexOf(letter.toLowerCase()) > -1) {
-		$('.letter').each(function() {
-			if ($(this).data('letter').toLowerCase() == letter.toLowerCase()) {
-				$(this).text(letter.toUpperCase());
-				$(this).attr('solved', "true");
+	var pattern = new RegExp(/[~`!#$%\^&*+=1234567890\-\[\]\\';,/{}|\\":<>\?]/);
+	if (!pattern.test(letter)) {
+		if (word.toLowerCase().indexOf(letter.toLowerCase()) > -1) {
+			$('.letter').each(function() {
+				if ($(this).data('letter').toLowerCase() == letter.toLowerCase()) {
+					$(this).text(letter.toUpperCase());
+					$(this).attr('solved', "true");
+				}
+			})
+			if ($('[solved=true]').length == $('.letter').length) {
+				hangman.win();
 			}
-		})
-		if ($('[solved=true]').length == $('.letter').length) {
-			hangman.win();
-		}
 
-	} else {
-		if (triesLeft === 7) {
-			$('#guesses').text(letter.toUpperCase())
 		} else {
-			$('#guesses').append(', ' + letter.toUpperCase());
+			if (triesLeft === 7) {
+				$('#guesses').text(letter.toUpperCase())
+			} else {
+				$('#guesses').append(', ' + letter.toUpperCase());
+			}
+			hangman.deductTry();
 		}
-		hangman.deductTry();
 	}
+
 
 }
 
@@ -60,10 +64,20 @@ hangman.setWordDisplay = function setWordDisplay(word) {
 		if (word[i] === " ") {
 			square.addClass('space')
 		} else {
-			square
-				.addClass('letter')
-				.text('__')
-				.attr('data-letter', word[i])
+			var pattern = new RegExp(/[~`!#$%\^1234567890&*+=\-\[\]\\';,/{}|\\":<>\?]/);
+			if (pattern.test(word[i])) {
+				square
+					.addClass('letter')
+					.text(word[i])
+					.attr('data-letter', word[i])
+					.attr('solved', 'true')
+			} else {
+				square
+					.addClass('letter')
+					.text('__')
+					.attr('data-letter', word[i]);
+			}
+
 		}
 		container.append(square);
 	}
