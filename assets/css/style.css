@@ -1,0 +1,96 @@
+html {
+  font-size: 40px;
+}
+.abs-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.stage {
+  background: #eee;
+  width: 24rem;
+  height: 15rem;
+  position: relative;
+}
+
+.head {
+  background: #eee;
+  border: .2rem solid #000;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  top: 2rem;
+}
+
+.neck {
+  background: #000;
+  width: 0.2rem;
+  height: 2rem;
+  top:4rem;
+}
+
+.lArm {
+  background: #000;
+  width: 0.2rem;
+  height: 3rem;
+  top:3rem;
+  transform:rotateZ(-45deg) translateX(-1.5rem);
+}
+
+.rArm {
+  background: #000;
+  width: 0.2rem;
+  height: 3rem;
+  top:3rem;
+  transform:rotateZ(45deg) translateX(1.5rem);
+}
+
+.lLeg {
+  background: #000;
+  width: 0.2rem;
+  height: 3rem;
+  top:11.5rem;
+  transform:rotateZ(-135deg) translateX(1.5rem);
+}
+
+.rLeg {
+  background: #000;
+  width: 0.2rem;
+  height: 3rem;
+  top:11.5rem;
+  transform:rotateZ(-45deg) translateX(1.5rem);
+}
+
+.body   {
+  background: #000;
+  width: 0.2rem;
+  height: 5rem;
+  top:6rem;
+}
+
+.gallows.post {
+  background: #000;
+  width: 0.2rem;
+  height: 13rem;
+  top:0.5rem;
+  transform: translateX(-8rem);
+}
+
+.gallows.cantilever {
+  background: #000;
+  width: 8rem;
+  height: 0.2rem;
+  top:0.5rem;
+  transform: translateX(-4rem);
+}
+
+.gallows.rope {
+  background: #000;
+  width: 0.2rem;
+  height: 1.7rem;
+  top:0.5rem;
+}
