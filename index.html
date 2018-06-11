@@ -6,24 +6,47 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hangman!</title>
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/person.css">
+  <link href="https://fonts.googleapis.com/css?family=Francois+One|Lato" rel="stylesheet">
 </head>
 <body>
+  <h4>Super Generically-Themed Hangman Game</h4>
+  <div class="word" id='word'>
+    <div class="space"></div>
+  </div>
+  <div class="scoreboard">
+    <div class="tries-left">
+      Tries left: <span id="tries"></span>
+      <br>
+      Wins: <span id="wins"></span>
+      <br>
+      Losses: <span id="losses"></span>
+      <br>
+    </div>
+    <div class="guesses">Already guessed: <span id="guesses"></span></div>
+  </div>
   <div class="stage">
-    <div class="neck abs-center"></div>
-    <div class="head abs-center"></div>
-    <div class="lArm abs-center"></div>
-    <div class="rArm abs-center"></div>
-    <div class="lLeg abs-center"></div>
-    <div class="rLeg abs-center"></div>
-    <div class="body abs-center"></div>
+    <div class="head abs-center body-part"></div>
+    <div class="neck abs-center body-part"></div>
+    <div class="lArm abs-center body-part"></div>
+    <div class="rArm abs-center body-part"></div>
+    <div class="body abs-center body-part"></div>
+    <div class="lLeg abs-center body-part"></div>
+    <div class="rLeg abs-center body-part"></div>
     <div class="gallows cantilever abs-center"></div>
     <div class="gallows post abs-center"></div>
     <div class="gallows rope abs-center"></div>
-
-
   </div>
-  .
-
+  <div id="modal">
+    <div class="message">
+      Please wait...
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="/assets/javascript/hangman.js" charset="utf-8"></script>
   <script src="/assets/javascript/game.js" charset="utf-8"></script>
 </body>
 </html>
