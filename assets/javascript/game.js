@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#modal .message').text('Press any key to start!');
+	hangman.modal('Press any key to start!');
 	$(document).keypress(function(e) {
 		if (word) {
 			hangman.checkLetter(e.key);

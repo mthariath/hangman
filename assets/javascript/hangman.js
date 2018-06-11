@@ -1,13 +1,11 @@
 var hangman = {};
 var word, triesLeft;
-var guessedLetters = [];
 var wins = 0,
 	losses = 0;
 
 hangman.start = function start() {
 	word = hangman.generateWord();
 	hangman.setWordDisplay(word);
-	guessedLetter = [];
 	triesLeft = 7;
 	$('#tries').text(triesLeft);
 	$('#guesses').text('');
@@ -31,12 +29,16 @@ hangman.checkLetter = function checkLetter(letter) {
 			}
 
 		} else {
-			if (triesLeft === 7) {
-				$('#guesses').text(letter.toUpperCase())
-			} else {
-				$('#guesses').append(', ' + letter.toUpperCase());
+			var guesses = $('#guesses');
+
+			if ((guesses.text().toLowerCase().indexOf(letter.toLowerCase())) === -1) {
+				if (triesLeft === 7) {
+					guesses.text(letter.toUpperCase())
+				} else {
+					guesses.append(', ' + letter.toUpperCase());
+				}
+				hangman.deductTry();
 			}
-			hangman.deductTry();
 		}
 	}
 
