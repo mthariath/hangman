@@ -1,23 +1,23 @@
-var hangman = {};
-var word, triesLeft;
-var wins = 0,
-	losses = 0;
+var hangman = {
+	wins: 0,
+	losses: 0
+};
 
 hangman.start = function start() {
-	word = hangman.generateWord();
-	hangman.setWordDisplay(word);
-	triesLeft = 7;
-	$('#tries').text(triesLeft);
+	hangman.word = hangman.generateWord();
+	hangman.setWordDisplay(hangman.word);
+	hangman.triesLeft = 7;
+	$('#tries').text(hangman.triesLeft);
 	$('#guesses').text('');
 	$('.body-part').fadeOut();
-	$('#wins').text(wins);
-	$('#losses').text(losses);
+	$('#wins').text(hangman.wins);
+	$('#losses').text(hangman.losses);
 }
 
 hangman.checkLetter = function checkLetter(letter) {
 	var pattern = new RegExp(/[~`!#$%\^&*+=1234567890\-\[\]\\';,/{}|\\":<>\?]/);
 	if (!pattern.test(letter)) {
-		if (word.toLowerCase().indexOf(letter.toLowerCase()) > -1) {
+		if (hangman.word.toLowerCase().indexOf(letter.toLowerCase()) > -1) {
 			$('.letter').each(function() {
 				if ($(this).data('letter').toLowerCase() == letter.toLowerCase()) {
 					$(this).text(letter.toUpperCase());
@@ -32,7 +32,7 @@ hangman.checkLetter = function checkLetter(letter) {
 			var guesses = $('#guesses');
 
 			if ((guesses.text().toLowerCase().indexOf(letter.toLowerCase())) === -1) {
-				if (triesLeft === 7) {
+				if (hangman.triesLeft === 7) {
 					guesses.text(letter.toUpperCase())
 				} else {
 					guesses.append(', ' + letter.toUpperCase());
@@ -47,9 +47,9 @@ hangman.checkLetter = function checkLetter(letter) {
 
 
 hangman.win = function win() {
-	word = '';
-	wins++;
-	$('#wins').text(wins);
+	hangman.word = '';
+	hangman.wins++;
+	$('#wins').text(hangman.wins);
 	hangman.modal('YOU WIN!  Press any key to try again!');
 }
 hangman.generateWord = function generateWord() {
@@ -86,14 +86,14 @@ hangman.setWordDisplay = function setWordDisplay(word) {
 }
 
 hangman.deductTry = function deductTry() {
-	$($('.body-part')[7 - triesLeft]).fadeIn();
-	if (triesLeft == 1) {
-		hangman.modal('YOU LOSE!  The word was ' + word + '.  Press any key to try again.');
-		losses++;
-		word = '';
+	$($('.body-part')[7 - hangman.triesLeft]).fadeIn();
+	if (hangman.triesLeft == 1) {
+		hangman.modal('YOU LOSE!  The word was ' + hangman.word + '.  Press any key to try again.');
+		hangman.losses++;
+		hangman.word = '';
 	} else {
-		triesLeft--;
-		$('#tries').text(triesLeft);
+		hangman.triesLeft--;
+		$('#tries').text(hangman.triesLeft);
 	}
 
 }
